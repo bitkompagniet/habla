@@ -1,5 +1,5 @@
 const program = require('commander');
-const analyzer = require('./lib/git-analyzer');
+const repoUrl = require('./lib/repository-url');
 const pmUrls = require('./lib/url-generator');
 const opn = require('opn');
 const pck = require('./package.json');
@@ -7,8 +7,8 @@ const version = pck.version;
 const NodeGit = require('nodegit');
 
 function urls() {
-	return analyzer.info()
-		.then(info => pmUrls(info.repository));
+	return repoUrl()
+		.then(repo => pmUrls(repo));
 }
 
 function open(url) {
@@ -35,8 +35,7 @@ function resolvedIssueTarget(no) {
 
 program
 	.version(version)
-	.description('Does snazzy things.')
-	.option('-b, --bullshit', 'Does nothing really.');
+	.description('Opens Github and Gitlab pages from git repositories.');
 
 program
 	.command('i [no]')

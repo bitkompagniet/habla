@@ -2,19 +2,18 @@
 
 const chai = require('chai');
 chai.should();
-const analyzer = require('../lib/git-analyzer');
+const repoUrl = require('../lib/repository-url');
 const pmUrls = require('../lib/url-generator');
 
 describe('url-generator', () => {
 	it('should correctly generate an info object', () =>
-		analyzer.info()
-			.then(info => pmUrls(info.repository))
+		repoUrl()
+			.then(url => pmUrls(url))
 			.then(urls => {
-				urls.type.should.equal('github');
-				urls.project.should.equal('https://github.com/bitkompagniet/habla');
-				urls.issues.should.equal('https://github.com/bitkompagniet/habla/issues');
+				urls.project.should.equal('github.com/bitkompagniet/habla');
+				urls.issues.should.equal('github.com/bitkompagniet/habla/issues');
 				urls.issue.should.be.a('function');
-				urls.issue(1).should.equal('https://github.com/bitkompagniet/habla/issues/1');
+				urls.issue(1).should.equal('github.com/bitkompagniet/habla/issues/1');
 			})
 	);
 });
