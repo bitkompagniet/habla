@@ -1,22 +1,20 @@
+/* global define describe, it */
+
 const chai = require('chai');
-const should = chai.should();
+chai.should();
 const analyzer = require('../lib/git-analyzer');
 const pmUrls = require('../lib/url-generator');
 
 describe('url-generator', () => {
-
-	it('should correctly generate an info object', () => {
-
-		return analyzer.info()
+	it('should correctly generate an info object', () =>
+		analyzer.info()
 			.then(info => pmUrls(info.repository))
 			.then(urls => {
 				urls.type.should.equal('github');
-				urls.project.should.equal('https://github.com/bitkompagniet/bitkompagniet-gitlab-helper');
-				urls.issues.should.equal('https://github.com/bitkompagniet/bitkompagniet-gitlab-helper/issues');
+				urls.project.should.equal('https://github.com/bitkompagniet/habla');
+				urls.issues.should.equal('https://github.com/bitkompagniet/habla/issues');
 				urls.issue.should.be.a('function');
-				urls.issue(1).should.equal('https://github.com/bitkompagniet/bitkompagniet-gitlab-helper/issues/1');
-			});
-
-	});
-
+				urls.issue(1).should.equal('https://github.com/bitkompagniet/habla/issues/1');
+			})
+	);
 });

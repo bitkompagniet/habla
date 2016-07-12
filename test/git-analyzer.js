@@ -24,7 +24,7 @@ describe('Analyzer', () => {
 		return analyzer.info().then(info => {
 			info.should.be.an('object');
 			info.should.contain.all.keys(['repository']);
-			info.repository.should.equal('git@github.com:bitkompagniet/bitkompagniet-gitlab-helper.git');
+			info.repository.should.equal('git@github.com:bitkompagniet/habla.git');
 		});
 	});
 });
