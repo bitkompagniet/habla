@@ -1,7 +1,7 @@
 {
   "name": "habla",
   "version": "0.2.0",
-  "description": "A CLI helper tool for easily accessing Github or Gitlab directly from your repository.",
+  "description": "Access Github and Gitlab project directly from the command line",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
