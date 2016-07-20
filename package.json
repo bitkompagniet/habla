@@ -4,7 +4,11 @@
   "description": "A CLI helper tool for easily accessing Github or Gitlab directly from your repository.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint ."
+  },
+  "bin": {
+    "habla": "./cli.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
     "commander": "^2.9.0",
     "ini": "^1.3.4",
     "nodegit": "^0.14.1",
-    "opn": "^4.0.2"
+    "opn": "^4.0.2",
+    "string-template": "^1.0.0"
   }
 }

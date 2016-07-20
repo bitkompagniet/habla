@@ -1,37 +1,10 @@
+#!/usr/bin/env node
+
 const program = require('commander');
-const repoUrl = require('./lib/repository-url');
-const pmUrls = require('./lib/url-generator');
-const opn = require('opn');
 const pck = require('./package.json');
 const version = pck.version;
-const NodeGit = require('nodegit');
-
-function urls() {
-	return repoUrl()
-		.then(repo => pmUrls(repo));
-}
-
-function open(url) {
-	return opn(url, { wait: false });
-}
-
-function branchIssueNo(name) {
-	const match = name.match(/issues?\/(\d+)$/);
-	return match ? match[1] : null;
-}
-
-function resolvedIssueNo() {
-	return NodeGit.Repository.open(process.cwd())
-		.then(repo => repo.getCurrentBranch())
-		.then(branch => branch.name())
-		.then(name => branchIssueNo(name));
-}
-
-function resolvedIssueTarget(no) {
-	const target = no ? Promise.resolve(no) : resolvedIssueNo();
-	return target
-		.then(resolvedNo => urls().then(u => (resolvedNo ? u.issue(resolvedNo) : u.issues)));
-}
+const openIssue = require('./lib/open-issue');
+const openProject = require('./lib/open-project');
 
 program
 	.version(version)
@@ -40,11 +13,11 @@ program
 program
 	.command('i [no]')
 	.alias('issue')
-	.description('Open issues in project.')
-	.action(no => resolvedIssueTarget(no).then(target => open(target)));
+	.description('Open issues list or specific issue. Will resolve the issue if the current branch is called issue/no.') // eslint-disable-line max-len
+	.action(openIssue);
 
 program.parse(process.argv);
 
 if (process.argv.slice().length <= 2) {
-	urls().then(u => open(u.project));
+	openProject();
 }
