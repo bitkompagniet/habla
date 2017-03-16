@@ -1,4 +1,6 @@
-#!/usr/bin/env node
+const todo = require('./lib/todo');
+
+// #!/usr/bin/env node
 
 const program = require('commander');
 const pck = require('./package.json');
@@ -15,6 +17,10 @@ program
 	.alias('issue')
 	.description('Open issues list or specific issue. Will resolve the issue if the current branch is called issue/no.') // eslint-disable-line max-len
 	.action(openIssue);
+	
+program
+	.command('todo')
+	.description('Lists issues on Github, Gitlab and trello arcording to their deadline. ').action(todo)
 
 program.parse(process.argv);
 
