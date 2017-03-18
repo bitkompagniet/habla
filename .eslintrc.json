@@ -5,6 +5,7 @@
     "func-names": "off",
     "no-param-reassign": ["error", { "props": false }],
     "new-cap": ["error", { "properties": false }],
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "max-len": "off"
   }
 }
