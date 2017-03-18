@@ -17,10 +17,11 @@ program
 	.alias('issue')
 	.description('Open issues list or specific issue. Will resolve the issue if the current branch is called issue/no.') // eslint-disable-line max-len
 	.action(openIssue);
-	
+
 program
 	.command('todo')
-	.description('Lists issues on Github, Gitlab and trello arcording to their deadline. ').action(todo)
+	.description('Lists issues on Github, Gitlab and trello according to their deadline. ')
+	.action(todo);
 
 program.parse(process.argv);
 
