@@ -4,6 +4,8 @@ const todo = require('./lib/todo');
 
 const program = require('commander');
 const pck = require('./package.json');
+const fs = require('fs');
+
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
 const openProject = require('./lib/open-project');
