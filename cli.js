@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
+const tokens = require('./tokens');
 const program = require('commander');
 const pck = require('./package.json');
-const fs = require('fs');
-const todo = require('./lib/todo');
+const todo = require('./lib/todo')(tokens);
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
 const openProject = require('./lib/open-project');
