@@ -1,11 +1,9 @@
-const todo = require('./lib/todo');
-
-// #!/usr/bin/env node
+#!/usr/bin/env node
 
 const program = require('commander');
 const pck = require('./package.json');
 const fs = require('fs');
-
+const todo = require('./lib/todo');
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
 const openProject = require('./lib/open-project');
