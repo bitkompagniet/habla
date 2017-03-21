@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const github = require('./lib/login/github');
 const gitlab = require('./lib/login/gitlab');
 const hablaDataFile = require('./lib/habla-data-file');
 const program = require('commander');
@@ -27,6 +28,11 @@ program
 	.command('gitlab')
 	.description('Login with gitlab')
 	.action(gitlab);
+
+program
+	.command('github')
+	.description('Login with github')
+	.action(github);
 
 program.parse(process.argv);
 
