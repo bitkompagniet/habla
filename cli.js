@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-
 const gitlab = require('./lib/login/gitlab');
-
-const tokens = require('./tokens');
+const hablaDataFile = require('./lib/habla-data-file');
 const program = require('commander');
 const pck = require('./package.json');
+const tokens = hablaDataFile.load();
 const todo = require('./lib/todo')(tokens);
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
