@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+
+const logout = require('./lib/login/logout');
+const trello = require('./lib/login/trello');
+const github = require('./lib/login/github');
 const gitlab = require('./lib/login/gitlab');
 const hablaDataFile = require('./lib/habla-data-file');
 const program = require('commander');
@@ -27,6 +31,21 @@ program
 	.command('gitlab')
 	.description('Login with gitlab')
 	.action(gitlab);
+
+program
+	.command('github')
+	.description('Login with github')
+	.action(github);
+
+program
+	.command('trello')
+	.description('Login with trello')
+	.action(trello);
+
+program
+	.command('logout')
+	.description('Delete API authentication tokens')
+	.action(logout);
 
 program.parse(process.argv);
 
