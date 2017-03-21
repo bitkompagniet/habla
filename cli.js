@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-
-const tokens = require('./tokens');
+const gitlab = require('./lib/login/gitlab');
+const hablaDataFile = require('./lib/habla-data-file');
 const program = require('commander');
 const pck = require('./package.json');
+const tokens = hablaDataFile.load();
 const todo = require('./lib/todo')(tokens);
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
@@ -22,6 +23,10 @@ program
 	.command('todo')
 	.description('Lists issues on Github, Gitlab and trello according to their deadline. ')
 	.action(todo);
+program
+	.command('gitlab')
+	.description('Login with gitlab')
+	.action(gitlab);
 
 program.parse(process.argv);
 
