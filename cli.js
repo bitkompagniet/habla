@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const gitlab = require('./lib/login/gitlab');
+
 const tokens = require('./tokens');
 const program = require('commander');
 const pck = require('./package.json');
@@ -22,6 +24,10 @@ program
 	.command('todo')
 	.description('Lists issues on Github, Gitlab and trello according to their deadline. ')
 	.action(todo);
+program
+	.command('gitlab')
+	.description('Login with gitlab')
+	.action(gitlab);
 
 program.parse(process.argv);
 
