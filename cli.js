@@ -1,11 +1,14 @@
-const todo = require('./lib/todo');
+#!/usr/bin/env node
 
-// #!/usr/bin/env node
-
+const logout = require('./lib/login/logout');
+const trello = require('./lib/login/trello');
+const github = require('./lib/login/github');
+const gitlab = require('./lib/login/gitlab');
+const hablaDataFile = require('./lib/habla-data-file');
 const program = require('commander');
 const pck = require('./package.json');
-const fs = require('fs');
-
+const tokens = hablaDataFile.load();
+const todo = require('./lib/todo')(tokens);
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
 const openProject = require('./lib/open-project');
@@ -24,6 +27,25 @@ program
 	.command('todo')
 	.description('Lists issues on Github, Gitlab and trello according to their deadline. ')
 	.action(todo);
+program
+	.command('gitlab')
+	.description('Login with gitlab')
+	.action(gitlab);
+
+program
+	.command('github')
+	.description('Login with github')
+	.action(github);
+
+program
+	.command('trello')
+	.description('Login with trello')
+	.action(trello);
+
+program
+	.command('logout')
+	.description('Delete API authentication tokens')
+	.action(logout);
 
 program.parse(process.argv);
 
