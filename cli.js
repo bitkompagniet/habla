@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const reporter = require('./lib/todo/reporter');
 const logout = require('./lib/login/logout');
 const trello = require('./lib/login/trello');
 const github = require('./lib/login/github');
@@ -8,7 +9,7 @@ const hablaDataFile = require('./lib/habla-data-file');
 const program = require('commander');
 const pck = require('./package.json');
 const tokens = hablaDataFile.load();
-const todo = require('./lib/todo')(tokens);
+const todo = require('./lib/todo');
 const version = pck.version;
 const openIssue = require('./lib/open-issue');
 const openProject = require('./lib/open-project');
@@ -26,7 +27,7 @@ program
 program
 	.command('todo')
 	.description('Lists issues on Github, Gitlab and trello according to their deadline. ')
-	.action(todo);
+	.action(todo(tokens, reporter));
 program
 	.command('gitlab')
 	.description('Login with gitlab')
