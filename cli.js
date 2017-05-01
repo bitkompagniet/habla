@@ -39,7 +39,7 @@ program
 			console.log('Please specify amount of tasks when using --number  (-n [amount])');
 		} else {
 			console.log('sag: ' + args.unassigned);
-			todo(tokens, reporter)(args.all, args.number, args.withoutdeadline, args.current, true); // (all, limit, noDeadline, thisRepo, unassigned)
+			todo(tokens, reporter)(args.all, args.number, args.withoutdeadline, args.current, args.unassigned); // (all, limit, noDeadline, thisRepo, unassigned)
 		}
 	}));
 
