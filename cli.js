@@ -26,8 +26,22 @@ program
 
 program
 	.command('todo')
+	.option('-a, --all', 'Remove limit from task-list')
+	.option('-n, --number [amount]', 'Amount of tasks shown (is overwritten by --all)')
+	.option('-c, --current', 'Only shows tasks from the current repository. ')
+	.option('-w, --withoutdeadline', 'Only shows tasks without deadlines')
+	.option('-u, --unassigned', 'Only shows unassigned tasks')
 	.description('Lists issues on Github, Gitlab and trello according to their deadline. ')
-	.action(todo(tokens, reporter));
+	.parse(process.argv)
+	.action((() => {
+		const args = program.args[0];
+		if (args.number && typeof(args.number) === 'boolean') {
+			console.log('Please specify amount of tasks when using --number  (-n [amount])');
+		} else {
+			todo(tokens, reporter)(args.all, args.number, args.withoutdeadline, args.current, args.unassigned); // (all, limit, noDeadline, thisRepo, unassigned)
+		}
+	}));
+
 program
 	.command('gitlab')
 	.description('Login with gitlab')
