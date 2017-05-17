@@ -27,3 +27,29 @@ If you want to view a specific issue:
 ```
 habla i 23
 ```
+**Habla todo** drops a list with issues from both github, gitlab and trello.
+```
+habla todo
+```
+To configure use: 
+```
+habla github 
+habla gitlab
+habla trello
+```
+And follow the given instructions.
+
+### Flags
+```
+-a, --all              Remove limit from task-list
+-n, --number [amount]  Amount of tasks shown (is overwritten by --all)
+-c, --current          Only shows tasks from the current repository.
+-w, --withoutdeadline  Only shows tasks without deadlines
+-u, --unassigned       Only shows unassigned tasks
+```
+
+### Example
+```
+habla todo -n 50 -c -u 
+```
+Get 50 unassigned issues, from the reposititory you are currently standing in. 
